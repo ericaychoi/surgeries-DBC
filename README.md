@@ -26,10 +26,16 @@ This script calculates the Alexander polynomials, Jones polynomials, and signatu
 - "jonesList.txt": The Jones polynomials of the knots (suitably normalized, as in the paper).
 - "cassonList.txt": The Casson invariants of the knots' double branched covers, calculated using the signature and Jones polynomial via Mullins' formula.
 
-### HF-Casson-compare
+### HF-Casson-compareHF
 
 This script eliminates all but finitely many surgeries to check for each knot. As a first pass, it uses Hanselman's data to calculate the rank of Heegaard Floer homology for surgeries as a function of $q$ (and $p=det(K)$). It compares this to the upper bound on the Heegaard Floer homology of the double branched cover of $K$, resulting in a finite interval of $q$-values. For each of these $q$-values, it calculates the Casson invariant of $p/q$-surgery and compares it to the pre-calculated Casson invariant of the double branched cover. If any $q$-values for which both obstructions are inconclusive are then saved to a file named "failList.txt".
 
 ### TV-compare
 
 This script attempts to distinguish the remaining surgeries from the double branched covers using Turaev-Viro invariants. These computations are resource-intensive and seem to accumulate memory, so the script is designed to be killed and restarted repeatedly. To accommodate this, it frequently saves progress reports ("progress.txt") and updated lists of which surgeries remain to be checked ("WhatsLeft.txt"). At the moment, its declarations of having "Successfully distinguished the remaining surgeries and double branched covers" are only valid if it checked the entire set of q-values without being halted. (Note: We will have to manually check to make sure there are no false negatives.) Any updates in the progress report that don't include this message (should) have at least one surgery that has the same Turaev-Viro invariants as the double branched cover, and this does indeed occur. Exceptions (because of failure to compute or equality in the Turaev-Viro invariants) have been saved to a file called "Check by hand.txt".
+
+### To do
+
+- [ ] describe docker workflow
+- [ ] clarify .py vs. .sage files
+- [ ] compress data for 15&16 crossings
